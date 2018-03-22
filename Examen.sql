@@ -36,3 +36,20 @@ SALARY NUMBER (10,2) NOT NULL CHECK (SALARY > 500),
 CONSTRAINT FK_SALARY_EMPLOYEE FOREIGN KEY (EMPLOYEE_ID) REFERENCES EMPLOYEES(ID),
 CONSTRAINT FK_SALARY_PROJECT FOREIGN KEY (PROJECT_ID) REFERENCES PROJECTS(ID)
 );
+
+---------------
+---Consultas---
+---------------
+--  Write a SQL query to count the number of employees working in project '44905736599'
+--Escriba una consulta SQL para contar el número de empleados que trabajan en el proyecto '44905736599'
+SELECT COUNT(EMPLOYEES.FULL_NAME)
+FROM EMPLOYEES
+  INNER JOIN PROJECTS ON EMPLOYEES.id = PROJECTS.MANAGER_ID
+WHERE PROJECTS.CODE ='44905736599';
+
+--  Write a SQL query to fetch employee names (one column, don't change the alias) having salary greater than or equal to 1000 and less than or equal 2500.
+--Escriba una consulta SQL para buscar nombres de empleados (una columna, no cambie el alias) que tengan un salario mayor o igual a 1000 y menor o igual a 2500.
+SELECT EMPLOYEES.FULL_NAME
+FROM EMPLOYEES
+  INNER JOIN SALARIES ON EMPLOYEES.id = SALARIES.EMPLOYEE_ID
+WHERE SALARIES.SALARY >=1000 OR SALARIES.SALARY <=2500;
